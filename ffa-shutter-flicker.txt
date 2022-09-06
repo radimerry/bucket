@@ -1,5 +1,5 @@
 .org 0x02f3
-  ld a, b			; ptr to last entry
+	ld a, b			; ptr to last entry
 	srl a
 	srl a
 	dec a
