@@ -1,0 +1,26 @@
+.org 0x02f3
+  ld a, b			; ptr to last entry
+	srl a
+	srl a
+	dec a
+	ld (0xd3e2), a
+
+
+	ld de, 0xd3a0
+
+@copy:
+	ldi a, (hl)
+	ld (de), a
+
+	inc de
+	dec b
+	jr nz, @copy
+
+	ret
+
+
+	nop :: nop :: nop
+	nop :: nop :: nop
+	nop :: nop :: nop
+	nop :: nop :: nop
+	nop
