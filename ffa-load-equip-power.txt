@@ -1,0 +1,46 @@
+org 0x2, 0x7355
+	ld hl, 0xd6dd		; equip item #s
+	ld de, 0xd6b3		; equip ratings
+	ld b, 0x0c		; # equip items
+
+
+@loop:
+	push bc
+
+	ld a, (hl)		; get item property ==> b,c
+	call 0x569c
+
+	inc c			; if (property == FF), skip table lookup
+	jr z, @next
+
+
+	ld a, (hl)
+	res 7, a
+
+
+	push hl
+
+	ld hl, 0x61f6		; get item power
+	call 0x7682
+	ld a, (hl)
+
+	pop hl
+	ld (de), a		; store power value
+
+
+
+@next:
+	inc de
+	inc hl
+
+
+	pop bc
+	dec b
+	jr nz, @loop
+
+
+	nop :: nop :: nop
+	nop :: nop :: nop
+	nop :: nop :: nop
+
+warnpc 0x7381
