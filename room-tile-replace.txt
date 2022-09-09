@@ -1,0 +1,87 @@
+org 0x1, 0x51f6
+	dh @op02
+	dh @op03
+	dh @op04
+	dh @op05
+	dh @op06
+
+
+
+
+org 0x1, 0x526d
+
+@op02:
+	ld a, 0x6
+	jr @new_00
+
+
+
+
+@op03:
+	ld a, 0x6
+	cp b
+
+	ld h, 0x2
+	jr @check_tile
+
+
+
+
+@op04:
+	ld a, 0x2
+	cp b
+
+	ld h, 0x1
+	jr @check_tile
+
+
+
+
+@op05:
+	ld a, 0x2
+	jr @new_00
+
+
+
+
+@op06:
+	ld a, 0x4
+;; 	jr @new_00
+
+
+
+
+
+@new_00:
+	cp b
+	ld h, 0x0
+
+
+
+
+@check_tile:
+	ret nz
+
+
+	ld a, 0x0f	; y-max
+	cp d
+	ret c
+
+
+	ld a, 0x13	; x-max
+	cp e
+	ret c
+
+
+	srl d
+	srl e
+
+
+	ld a, h
+	call 0x2400
+	ret
+
+
+; 25 nops
+
+warnpc 0x52b3
