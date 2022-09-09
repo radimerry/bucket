@@ -63,14 +63,32 @@ org 0x1, 0x526d
 	ret nz
 
 
+	inc d		; fix xpos tile position
+	jr z, @@check_ymax
+
+	inc d
+	jr z, @@check_ymax
+
+	dec d
+	dec d
+
+
+@@check_ymax:
 	ld a, 0x0f	; y-max
 	cp d
 	ret c
 
 
+
+	inc e		; fix xpos tile position
+	jr z, @@check_xmax
+	dec e
+
+@@check_xmax:
 	ld a, 0x13	; x-max
 	cp e
 	ret c
+
 
 
 	srl d
@@ -82,6 +100,6 @@ org 0x1, 0x526d
 	ret
 
 
-; 25 nops
+; 13 nops
 
-warnpc 0x52b3
+freepc 0x52b3
