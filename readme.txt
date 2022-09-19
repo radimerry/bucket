@@ -1,19 +1,21 @@
-Mole Mania - Protech Bug Eraser 0.1  [Radiant Nighte]
+Space Invasion - Protech Bug Eraser 0.1  [Radiant Nighte]
 
 
 
-Fixes:  [Japan, USA, Europe]
-- Detect SGB2 and play correct music tempo
+
+Fixes:  [Europe, Multi2 - Karate Joe, Multi2 - Painter]
+# Draw correct enemy sprite bullets  (later GBC revisions, GBA)
+
+
+
+
+
+Tested patching order:
+- Europe + Protech
+
 
 
 
 
 Source: MIT License
-https://github.com/radimerry/mole-mania/tree/game-fixes
-
-
-
-
-Notes:
-- Sprite overlap glitches are due to buggy priority problems with DMG hardware
-  (some emulators or handhelds may have option to fix oam sorting)
+https://github.com/radimerry/space-invasion-gbc/tree/game-fixes
