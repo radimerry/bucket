@@ -1,21 +1,23 @@
-Space Invasion - Protech Bug Eraser 0.1  [Radiant Nighte]
+Boxxle II - Protech Bug Eraser 0.1  [Radiant Nighte]
+
+
+
+fixes:  [japan, usa / europe]
++ stop micro-stutter pauses, frame-skipping or briefly glitched music
++ stop flickering when closing menus
++ stop joypad from auto-sending too many button presses
++ always animate player when moving around
+
+= adjust small-mode sprites to match their large-mode counterparts
 
 
 
 
-Fixes:  [Europe, Multi2 - Karate Joe, Multi2 - Painter]
-# Draw correct enemy sprite bullets  (later GBC revisions, GBA)
+fixes:  [usa / europe]
++ stop flicker during title screen animation
 
 
 
 
-
-Tested patching order:
-- Europe + Protech
-
-
-
-
-
-Source: MIT License
-https://github.com/radimerry/space-invasion-gbc/tree/game-fixes
+source: MIT license
+https://github.com/radimerry/boxxle2-gb/tree/game-fixes
