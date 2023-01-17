@@ -1,0 +1,84 @@
+/*
+upload wave pcm data at more spaced intervals
+- codemasters engine = no timer used to ensure palettes get written without interruption
+- not perfect, runs every 5 scanlines
+*/
+
+
+
+org 0x0, 0x1346
+	; upload audio 1 at ly=0
+
+
+
+
+
+org 0x0, 0x1374
+	ld a, e 
+
+
+	cp a, 0x20		; audio 2  [30.8 ideally]
+	jr z, @upload_2
+
+
+	cp a, 0x3f		; audio 3  [61.6 ideally]
+	jr z, @upload_3
+
+
+	cp a, 0x5d		; audio 4  [92.4 ideally]
+	jr z, @upload_4
+
+
+;;	cp a, 0x7c		; audio 5  [123.2 ideally]
+	nop :: nop		; not enough time for video ?
+
+
+	call nz, 0x160d		; gfx stuff  [18 tiles?]
+	jr nz, 0x139c
+
+
+
+@upload_5:
+	ld c, 0x40		; ly ~ 0x7e by now
+	jr @upload
+
+
+
+@upload_4:
+	ld c, 0x30		; ly ~ 0x5f by now
+	jr @upload
+
+
+
+@upload_3:
+	ld c, 0x20		; ly ~ 0x41 by now
+	jr @upload
+
+
+
+@upload_2:
+	ld c, 0x10		; ly ~ 0x22 by now
+
+
+
+@upload:
+	ld b, 0x00
+	call 0x147b
+	nop
+
+
+
+samepc 0x139c
+
+
+
+
+
+; @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+org 0x0, 0x12e7
+;;	jr 0x12ed		; do not upload audio 5 at ly=90
+				; - very bad timing = prematurely cut after 10 scanlines  [garbled]
